@@ -1,11 +1,8 @@
 #!/usr/bin/env python
-from re import S
-import numpy as np
 from math import gamma
 
-
 alpha = 0.5
-gamma = 1
+gamma = 0.5
 
 all_states = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'O']
 all_actions = ['r', 'l', 'u', 'd', 'e']
@@ -63,14 +60,9 @@ episodes = [[['A', 'r', 'B', 1],
              ['G', 'r', 'F', 1],
              ['F', 'r', 'E', 1]]]
 
-
-
-
-
 V = {state : 0 for state in all_states}
 
 k = 0
-# while k < 2:
 for episode in episodes:
     for samples in episode:
         oldV = V.copy()
@@ -81,4 +73,3 @@ for episode in episodes:
                     V[state] = (1-alpha)*oldV[state] + (alpha * (reward + gamma * V[successor]))
                     print('Value of States:',V)
                     print('Value of',successor,'as the successor for',state,'is:',V[successor])
-    # k += 1
